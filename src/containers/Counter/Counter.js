@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CounterOutput from '../../components/CounterOutput/CounterOutput';
 import CounterControl from '../../components/CounterControl/CounterControl';
+import './Counter.css';
 
 class Counter extends Component {
     // state = {
@@ -44,9 +45,9 @@ class Counter extends Component {
                 />
                 <hr />
                 <button onClick={this.props.storeResult}>Store Result</button>
-                <ul>
+                <ul className="storeList">
                     {this.props.result.map(strResult => (
-                        <li>{strResult}</li>
+                        <li title="delete" key={strResult.id} onClick={() => this.props.deleteResults(strResult.id)}>{strResult.value}</li>
                     ))}
                 </ul>
             </div>
@@ -69,7 +70,8 @@ const mapDispatchToProps = dispatch => {
         addFive: () => dispatch({type: 'INCREASE_FIVE', value: 5}),
         subtractFive: () => dispatch({type: 'DECREASE_FIVE', value: 5}),
         changeName: () => dispatch({type: 'CHANGE_NAME'}),
-        storeResult: () => dispatch({type: 'STORE_RESULT'})
+        storeResult: () => dispatch({type: 'STORE_RESULT'}),
+        deleteResults: (id) => dispatch({type: 'DELETE_RESULT', resultElId: id}),
     };
 };
 

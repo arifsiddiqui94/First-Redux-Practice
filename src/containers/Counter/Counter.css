@@ -1,0 +1,6 @@
+.storeList {
+    text-align: left;
+}
+.storeList li {
+    cursor: pointer;
+}
